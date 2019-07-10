@@ -34,15 +34,16 @@ const schema = buildSchema(`
   }
 `);
 
-function addComment(args, comment) {
+function addComment(comment) {
   console.log(comment, 'comentario entrante')
   comments.push(comment);
   return comments;
 }
 
-function deleteComment(args, comment) {
+function deleteComment(comment) {
   for (let i = 0; i < comments.length; i++) {
     if ((comments[i].comment === comment.comment) && i === comment.position) {
+      console.log(comment, 'comentario a borrar')
       comments.splice(i, 1);
       return comments;
     } 
@@ -66,8 +67,8 @@ function getComments() {
 
 var root = {
   comments: () => comments,
-   addSimpleComment: async (args,comment) => addComment(args, comment),
-   deleteSimpleComment: async (args, comment) => deleteComment(args, comment),
+   addSimpleComment: async (comment) => addComment(comment),
+   deleteSimpleComment: async (comment) => deleteComment(comment),
    getListComments: async () => getComments
 }
 
@@ -88,7 +89,7 @@ app.use('/', graphqlHTTP({
 //   graphiql: true
 // }));
 
-app.listen();
+app.listen(4000);
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
 // server.listen().then(({ url }) => {
