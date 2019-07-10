@@ -1,5 +1,10 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { path } = require('path');
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+var { buildSchema } = require('graphql');
+
+const app = express();
+
 
 // This is a (sample) collection of comments we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -29,6 +34,7 @@ const typeDefs = gql`
 `;
 
 function addComment(args, comment) {
+  console.log(comment, 'comentario entrante')
   comments.push(comment);
   return comments;
 }
@@ -61,9 +67,34 @@ const resolvers = {
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
 const server = new ApolloServer({ typeDefs, resolvers });
+var schemaGetListComments = buildSchema(`
+# Comments in GraphQL are defined with the hash (#) symbol.
+input CommentInput {
+  comment: String
+}
+# This "Comment" type can be used in other type declarations.
+type Comment {
+  comment: String
+  position: Int
+}
+# The "Query" type is the root of all GraphQL queries.
+# (A "Mutation" type will be covered later on.)
+type Query {
+ comments: [Comment]
+ addSimpleComment(comment: String): Comment
+ deleteSimpleComment(comment: String, position: Int): [Comment]
+ getListComments: [Comment]
+}
+`);
 
+app.use('/graphql', graphqlHTTP({
+  schema: schemaGetListComments,
+  graphiql: true
+}));
+
+app.listen(4000);
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
-server.listen().then(({ url }) => {
- return console.log(`🚀  Server ready at :D ${url}`);
-});
+// server.listen().then(({ url }) => {
+//  return console.log(`🚀  Server ready at :D ${url}`);
+// });
