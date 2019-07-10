@@ -89,7 +89,7 @@ app.use('/graphql', graphqlHTTP({
 //   graphiql: true
 // }));
 
-// app.listen(4000);
+app.listen(4000);
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
 // server.listen().then(({ url }) => {

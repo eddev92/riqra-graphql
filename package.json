@@ -19,5 +19,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "edward llanca",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy": "https://riqra-graphql.herokuapp.com/"
 }
