@@ -77,18 +77,18 @@ var root = {
 // const server = new ApolloServer({ typeDefs, root });
 
 // const schemaAux = new GraphQLSchema({typeDefs, root});
-app.use('/graphql', graphqlHTTP({
+app.use('/', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
 }));
 
-app.post('/graphql', graphqlHTTP({
-  schema: schema,
-  graphiql: true
-}));
+// app.post('/graphql', graphqlHTTP({
+//   schema: schema,
+//   graphiql: true
+// }));
 
-app.listen(4000);
+app.listen();
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
 // server.listen().then(({ url }) => {
