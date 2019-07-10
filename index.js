@@ -81,15 +81,16 @@ var root = {
 app.use('/', graphqlHTTP({
   schema: schema,
   rootValue: root,
-  graphiql: false,
+  graphiql: true,
 }));
 
+app.use('/', (req, res) => res.send('connection successfully'))
 // app.post('/graphql', graphqlHTTP({
 //   schema: schema,
 //   graphiql: true
 // }));
-
-app.listen(4000);
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`server run ${port}`));
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
 // server.listen().then(({ url }) => {
