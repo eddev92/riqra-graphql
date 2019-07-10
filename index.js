@@ -78,7 +78,7 @@ var root = {
 // const server = new ApolloServer({ typeDefs, root });
 
 // const schemaAux = new GraphQLSchema({typeDefs, root});
-app.use('/', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
   graphiql: true,
