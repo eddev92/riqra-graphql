@@ -20,5 +20,5 @@
   },
   "author": "edward llanca",
   "license": "ISC",
-  "proxy": "https://riqra-graphql.herokuapp.com/"
+  "proxy": "https://riqra-graphql.herokuapp.com/graphql"
 }
