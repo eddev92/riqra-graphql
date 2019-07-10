@@ -35,7 +35,7 @@ const schema = buildSchema(`
 `);
 
 function addComment(args, comment) {
-  console.log(comment.response, 'comentario entrante')
+  console.log(comment, 'comentario entrante')
   comments.push(comment);
   return comments;
 }
