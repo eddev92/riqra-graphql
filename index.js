@@ -66,7 +66,7 @@ function getComments() {
 // };
 
 var root = {
-  comments: () => comments,
+   comments: () => comments,
    addSimpleComment: async (comment) => addComment(comment),
    deleteSimpleComment: async (comment) => deleteComment(comment),
    getListComments: async () => getComments
@@ -81,7 +81,7 @@ var root = {
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
-  graphiql: true,
+  graphiql: false,
 }));
 
 // app.post('/graphql', graphqlHTTP({
